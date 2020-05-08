@@ -23,22 +23,22 @@ describe LogParser::ConsolePresenter do
   it 'should render correctly' do
     expected = <<~EOF
 
-######### Total pageviews #########
+      ######### Total pageviews #########
 
-5\t\t/help_page/1
-3\t\t/contact
-3\t\t/about/2
-2\t\t/home
-1\t\t/index
+      5\t\t/help_page/1
+      3\t\t/contact
+      3\t\t/about/2
+      2\t\t/home
+      1\t\t/index
 
-######### Unique pageviews ########
+      ######### Unique pageviews ########
 
-4\t\t/help_page/1
-2\t\t/contact
-2\t\t/about/2
-2\t\t/home
-1\t\t/index
-EOF
+      4\t\t/help_page/1
+      2\t\t/contact
+      2\t\t/about/2
+      2\t\t/home
+      1\t\t/index
+    EOF
 
     expect(presenter.render(pageviews)).to(eq(expected))
   end

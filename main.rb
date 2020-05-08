@@ -1,20 +1,13 @@
 #!/bin/ruby
 # frozen_string_literal: true
 require './lib/log_parser.rb'
+require './lib/application.rb'
 
-filepath = ARGV.first
-
-parser = LogParser::Service.new(
+service = LogParser::Service.new(
   LogParser::FileReader.new,
   LogParser::LineParser.new,
   LogParser::PageviewsAggregator.new
 )
+presenter = LogParser::ConsolePresenter.new
 
-begin
-  pageviews_response = parser.parse_and_aggregate_logs(filepath)
-  print(LogParser::ConsolePresenter.new(pageviews_response).render)
-rescue LogParser::FileReader::InvalidFilename
-  # error
-rescue LogParser::FileReader::FileNotFound
-  # error
-end
+Application.new(service, presenter).run
