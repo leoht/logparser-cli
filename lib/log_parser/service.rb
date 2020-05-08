@@ -20,14 +20,14 @@ module LogParser
       total_views, unique_views = do_parse_and_aggregate(filepath)
 
       Response.new(
-        order_desc(total_views),
-        order_desc(unique_views)
+        order_pageviews_by_count_desc(total_views),
+        order_pageviews_by_count_desc(unique_views)
       )
     end
 
     private
 
-    def order_desc(pageviews_hash)
+    def order_pageviews_by_count_desc(pageviews_hash)
       pageviews_hash.sort_by { |_key, val| -val }.to_h
     end
 
