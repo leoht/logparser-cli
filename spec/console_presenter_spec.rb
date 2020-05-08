@@ -18,7 +18,7 @@ describe LogParser::ConsolePresenter do
       }
     )
   end
-  let(:presenter) { LogParser::ConsolePresenter.new(pageviews) }
+  let(:presenter) { LogParser::ConsolePresenter.new }
 
   it 'should render correctly' do
     expected = <<~EOF
@@ -40,6 +40,6 @@ describe LogParser::ConsolePresenter do
 1\t\t/index
 EOF
 
-    expect(presenter.render).to(eq(expected))
+    expect(presenter.render(pageviews)).to(eq(expected))
   end
 end
