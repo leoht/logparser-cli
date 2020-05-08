@@ -31,4 +31,17 @@ describe LogParser::PageviewsAggregator do
       }
     end
   end
+
+  it 'should not aggregate nil values' do
+    prev_totals, prev_uniques = aggregator.pageviews
+
+    expect do
+      aggregator.aggregate(nil, nil)
+      aggregator.aggregate(nil, nil)
+    end.to_not(raise_error)
+
+    totals, uniques = aggregator.pageviews
+    expect(totals).to(eq(prev_totals))
+    expect(uniques).to(eq(prev_uniques))
+  end
 end
